@@ -1,17 +1,39 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from "react";
 
-import Jumbotron from 'react-bootstrap/Jumbotron';
-import Toast from 'react-bootstrap/Toast';
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import Container from "react-bootstrap/Container";
 
+import FormUsers from "./components/FormUsers/FormUsers";
+import ListUsers from "./components/ListUsers/ListUsers";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
 
-    </div>
+  const [userList,setUserList] = useState([
+    {
+      id: Math.random().toString(),
+      name: 'Carlos',
+      age: 21
+    }
+  ]);
+
+  const addUserHandler = (user) => {
+    console.log(user);
+    
+    const newUser = {
+      id: Math.random().toString(),
+      ...user
+    };
+
+    setUserList( prevUserList => {
+      return [newUser,...prevUserList];
+    });
+  }
+
+  return (
+    <Container className="p-3">
+      <FormUsers onAddUser={addUserHandler}/>
+      <ListUsers users={userList}/>
+    </Container>
   );
 }
 
