@@ -7,32 +7,29 @@ import ListUsers from "./components/ListUsers/ListUsers";
 import "./App.css";
 
 function App() {
-
-  const [userList,setUserList] = useState([
+  const [userList, setUserList] = useState([
     {
       id: Math.random().toString(),
-      name: 'Carlos',
-      age: 21
-    }
+      name: "Carlos",
+      age: 21,
+    },
   ]);
 
   const addUserHandler = (user) => {
-    console.log(user);
-    
     const newUser = {
       id: Math.random().toString(),
-      ...user
+      ...user,
     };
 
-    setUserList( prevUserList => {
-      return [newUser,...prevUserList];
+    setUserList((prevUserList) => {
+      return [newUser, ...prevUserList];
     });
-  }
+  };
 
   return (
     <Container className="p-3">
-      <FormUsers onAddUser={addUserHandler}/>
-      <ListUsers users={userList}/>
+      <FormUsers onAddUser={addUserHandler} />
+      <ListUsers users={userList} />
     </Container>
   );
 }
